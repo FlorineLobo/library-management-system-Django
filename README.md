@@ -68,15 +68,6 @@ If you'd like to help improve features or add UI, feel free to open an issue.
 This project is open-source under the MIT License.
 
 ⭐ If you found this project helpful, consider giving the repo a Star!
-yaml
-Copy code
 
----
 
-## 🎉 After you commit README.md
-Run:
 
-```bash
-git add README.md
-git commit -m "Added professional README"
-git push
