@@ -1,73 +1,113 @@
-# 📚 Library Management System (Python OOP)
+📚 Library Management System (Django + MySQL)
 
-A clean and well-structured **Library Management System** built using **Object-Oriented Programming in Python**, with **persistent data storage** using JSON.  
-This project demonstrates real-world application of classes, objects, encapsulation, inheritance concepts, and clean code design.
+A full-featured **Library Management System** built using **Django**, **Bootstrap**, and **MySQL**.  
+This web app allows users to manage books, members, and borrowing activities with ease — including fine tracking, due dates, and borrowing limits.
 
----
+🚀 Features
 
-## ✨ Features
+✅ Add, edit, and delete **books**  
+✅ Register new **users/members**  
+✅ Borrow and return books  
+✅ Restrict users to a maximum of **3 borrowed books**  
+✅ Automatically calculate **fines** (₹10/day after 7 days)  
+✅ Display **due dates** and **borrowed/available** status  
+✅ Integrated with **MySQL** for persistent storage  
+✅ Built with **Django 5.2**, **Bootstrap 5**, and **Python 3.12**
 
-| Feature | Description |
-|--------|-------------|
-| Add Books | Store book information (title, author, ISBN) |
-| Register Users | Add library members |
-| Borrow Books | Tracks borrowed books and availability |
-| Return Books | Updates records when books are returned |
-| Search Books | Search by title or author keyword |
-| JSON Data Storage | Data stays saved even after closing program |
-| Borrow Limits | Users can borrow up to 3 books |
-| Borrow & Due Dates | Automatically sets a 14-day due date |
-
----
-
-## 🏗️ Project Structure
-
+🏗️ Project Structure
 library-management-system/
 │
-├── book.py # Book class with due date tracking
-├── user.py # User class with borrow limit
-├── library.py # Core library logic + JSON save/load
-├── main.py # Menu UI / Program entry point
-└── library_data.json # Persistent storage
+├── library_web/
+│ ├── library_web/ # Project settings, URLs, WSGI/ASGI config
+│ ├── libraryapp/ # Core app (models, views, templates)
+│ │ ├── migrations/ # Database migrations
+│ │ ├── templates/ # HTML templates (Bootstrap)
+│ │ ├── models.py # Database models
+│ │ ├── views.py # Business logic
+│ │ ├── urls.py # App URL routing
+│ │ └── forms.py # Django forms
+│ ├── db.sqlite3 # (Old local DB, now replaced with MySQL)
+│ ├── manage.py # Django management script
+│
+├── .venv/ # Virtual environment (ignored in Git)
+├── .gitignore
+└── README.md
 
-yaml
-Copy code
+⚙️ Installation & Setup
+Follow these steps to run the project locally 👇
 
----
+1️⃣ Clone the repository
+```bash
+git clone https://github.com/FlorineLobo/library-management-system-Django.git
+cd library-management-system-Django
 
-## ▶️ How to Run
+2️⃣ Create a virtual environment
+python -m venv .venv
+.venv\Scripts\activate   # On Windows
+or
+source .venv/bin/activate  # On Mac/Linux
 
-1. Install Python 3.8+
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/library-management-system.git
-Navigate into project:
+3️⃣ Install dependencies
+pip install -r requirements.txt
+If you don’t have a requirements.txt, generate one with:
+pip freeze > requirements.txt
 
-bash
-Copy code
-cd library-management-system
-Run the program:
+4️⃣ Configure MySQL in settings.py
+Make sure your DATABASES section looks like this:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'library_db',
+        'USER': 'root',
+        'PASSWORD': '',  # your MySQL password (if any)
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+5️⃣ Run migrations
+python manage.py makemigrations
+python manage.py migrate
 
-bash
-Copy code
-python main.py
-🔧 Future Enhancements (Planned)
-Late return fines
+6️⃣ Create a superuser (admin access)
+python manage.py createsuperuser
 
-GUI using Tkinter / PyQt
+7️⃣ Start the development server
+python manage.py runserver
 
-Web version (Flask or FastAPI)
+Then open 👉 http://127.0.0.1:8000/
+ in your browser.
 
-User login system
+🧠 Admin Panel
 
-🤝 Contributing
-Pull requests are welcome!
-If you'd like to help improve features or add UI, feel free to open an issue.
+Visit: http://127.0.0.1:8000/admin
 
-📜 License
-This project is open-source under the MIT License.
+Login with your superuser credentials
 
-⭐ If you found this project helpful, consider giving the repo a Star!
+Manage users, books, and borrowing logs directly from the Django admin interface
 
+📅 Borrowing Policy
+Rule	Description
+Max Books:	A user can borrow up to 3 books at a time
+Borrow Period:	7 days
+Fine:	₹10 per day after due date
+Return:	Books can be returned anytime before or after due date
 
+🧩 Tech Stack
+Component	Technology
+Backend	Django 5.2
+Frontend	HTML, CSS, Bootstrap 5
+Database	MySQL
+Language	Python 3.12
+Server	Django Development Server
 
+🧑‍💻 Author
+
+👤 Florine Lobo
+💼 GitHub Profile : https://github.com/FlorineLobo
+
+📧 Email: florinelobo52@gmail.com
+
+⭐ Show Your Support
+
+If you like this project, please give it a ⭐ on GitHub — it helps a lot! 
+Pull requests and feedback are always welcome 🙌
