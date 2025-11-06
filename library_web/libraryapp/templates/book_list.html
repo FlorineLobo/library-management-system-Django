@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-3">Books</h2>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Borrowed On</th>
+            <th>Due Date</th>
+            <th>Fine (if overdue)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+                {% if book.available %}
+                    <span class="badge bg-success">Available</span>
+                {% else %}
+                    <span class="badge bg-danger">Borrowed by {{ book.borrower.name }}</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if book.borrowed_on %}
+                    {{ book.borrowed_on|date:"d M Y H:i" }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if book.due_date %}
+                    {{ book.due_date|date:"d M Y H:i" }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if book.is_overdue %}
+                    Rs.{{ book.calculate_fine }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if book.available %}
+                    <a href="{% url 'borrow_book' book.id %}" class="btn btn-sm btn-primary">Borrow</a>
+                {% else %}
+                    <a href="{% url 'return_book' book.id %}" class="btn btn-sm btn-warning">Return</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

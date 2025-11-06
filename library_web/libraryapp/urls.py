@@ -1,0 +1,14 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('books/', views.book_list, name='book_list'),
+    path('add-book/', views.add_book, name='add_book'),
+    path('add-user/', views.add_user, name='add_user'),
+    path('books/borrow/<int:book_id>/', views.borrow_book, name='borrow_book'),
+    path('books/return/<int:book_id>/', views.return_book, name='return_book'),
+    path('users/', views.user_list, name='user_list'),
+
+
+]

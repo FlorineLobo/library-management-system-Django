@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">Welcome to the Library System</h1>
+    <a href="{% url 'book_list' %}" class="btn btn-primary me-2">View Books</a>
+    <a href="{% url 'add_book' %}" class="btn btn-success me-2">Add Book</a>
+    <a href="{% url 'add_user' %}" class="btn btn-warning">Add User</a>
+</div>
+{% endblock %}
